@@ -7,17 +7,14 @@ func main() {
 
 	cart := Cart{}
 
-	cart.AddItem(Item{
-		Name:  "Book",
-		Price: 10.5,
-		Qty:   2,
-	})
+	cart.AddItem(Item{"Book", 10.5, 2})
+	cart.AddItem(Item{"Pen", 2.0, 5})
+	cart.AddItem(Item{"Laptop Sticker", 3.0, 1})
 
-	cart.AddItem(Item{
-		Name:  "Pen",
-		Price: 2.0,
-		Qty:   5,
-	})
+	cart.ViewCart()
+
+	fmt.Println("\nRemoving item at index 1...")
+	cart.RemoveItem(1)
 
 	cart.ViewCart()
 }
