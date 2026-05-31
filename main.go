@@ -7,20 +7,17 @@ func main() {
 
 	cart := Cart{}
 
-	item1 := Item{
+	cart.AddItem(Item{
 		Name:  "Book",
 		Price: 10.5,
 		Qty:   2,
-	}
+	})
 
-	item2 := Item{
+	cart.AddItem(Item{
 		Name:  "Pen",
 		Price: 2.0,
 		Qty:   5,
-	}
+	})
 
-	cart.AddItem(item1)
-	cart.AddItem(item2)
-
-	fmt.Println("Cart Items:", cart.Items)
+	cart.ViewCart()
 }
