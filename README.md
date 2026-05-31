@@ -1,3 +1,5 @@
+# 🛒 Shopping Cart CLI (Go)
+
 A simple command-line shopping cart application built with Go.
 
 This project demonstrates core backend fundamentals such as structs, methods, slices, and user input handling in a CLI environment.
@@ -34,7 +36,7 @@ go-shopping-cart/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Perfected1/go-shopping-cart.git
 cd go-shopping-cart
 ````
 
