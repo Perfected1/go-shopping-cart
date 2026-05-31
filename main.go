@@ -1,41 +1,75 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
 
 func main() {
-	// Starting point of our shopping cart application
-	fmt.Println("Simple Shopping Cart Started")
+	// Entry point of the shopping cart app
+	fmt.Println("Welcome to Simple Shopping Cart CLI")
 
-	// Create a new cart instance
 	cart := Cart{}
+	reader := bufio.NewReader(os.Stdin)
 
-	// Add sample items into cart (for testing purposes)
-	cart.AddItem(Item{
-		Name:  "Book",
-		Price: 10.5,
-		Qty:   2,
-	})
+	for {
+		// Show menu options
+		fmt.Println("\nChoose an option:")
+		fmt.Println("1 - Add Item")
+		fmt.Println("2 - Remove Item")
+		fmt.Println("3 - View Cart")
+		fmt.Println("4 - Exit")
+		fmt.Print("Enter choice: ")
 
-	cart.AddItem(Item{
-		Name:  "Pen",
-		Price: 2.0,
-		Qty:   5,
-	})
+		input, _ := reader.ReadString('\n')
+		input = strings.TrimSpace(input)
 
-	cart.AddItem(Item{
-		Name:  "Laptop Sticker",
-		Price: 3.0,
-		Qty:   1,
-	})
+		switch input {
 
-	// View cart before removal
-	cart.ViewCart()
+		case "1":
+			// Add item flow
+			fmt.Print("Enter item name: ")
+			name, _ := reader.ReadString('\n')
+			name = strings.TrimSpace(name)
 
-	fmt.Println("\nRemoving Pen...")
+			fmt.Print("Enter price: ")
+			priceInput, _ := reader.ReadString('\n')
+			priceInput = strings.TrimSpace(priceInput)
+			price, _ := strconv.ParseFloat(priceInput, 64)
 
-	// Remove item by name
-	cart.RemoveItem("Pen")
+			fmt.Print("Enter quantity: ")
+			qtyInput, _ := reader.ReadString('\n')
+			qtyInput = strings.TrimSpace(qtyInput)
+			qty, _ := strconv.Atoi(qtyInput)
 
-	// View updated cart
-	cart.ViewCart()
+			cart.AddItem(Item{
+				Name:  name,
+				Price: price,
+				Qty:   qty,
+			})
+
+		case "2":
+			// Remove item flow
+			fmt.Print("Enter item name to remove: ")
+			name, _ := reader.ReadString('\n')
+			name = strings.TrimSpace(name)
+
+			cart.RemoveItem(name)
+
+		case "3":
+			// View cart
+			cart.ViewCart()
+
+		case "4":
+			// Exit app
+			fmt.Println("Exiting... Goodbye 👋")
+			return
+
+		default:
+			fmt.Println("Invalid option. Try again.")
+		}
+	}
 }

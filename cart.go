@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// Cart holds all items added by the user
+// Cart stores all shopping items
 type Cart struct {
 	Items []Item
 }
@@ -10,16 +10,15 @@ type Cart struct {
 // AddItem adds a new item into the cart
 func (c *Cart) AddItem(item Item) {
 	c.Items = append(c.Items, item)
+	fmt.Println("Item added:", item.Name)
 }
 
-// RemoveItem removes an item from the cart by name
-// If the item is not found, it prints a friendly message
+// RemoveItem removes an item by name
 func (c *Cart) RemoveItem(name string) {
 	found := false
 
 	for i, item := range c.Items {
 		if item.Name == name {
-			// remove item by rebuilding slice without it
 			c.Items = append(c.Items[:i], c.Items[i+1:]...)
 			found = true
 			fmt.Println("Item removed:", name)
@@ -32,7 +31,7 @@ func (c *Cart) RemoveItem(name string) {
 	}
 }
 
-// GetTotal calculates total cost of all items in the cart
+// GetTotal calculates total cost of cart
 func (c *Cart) GetTotal() float64 {
 	total := 0.0
 
@@ -43,7 +42,7 @@ func (c *Cart) GetTotal() float64 {
 	return total
 }
 
-// ViewCart displays all items in a clean readable format
+// ViewCart displays all items in a readable format
 func (c *Cart) ViewCart() {
 	if len(c.Items) == 0 {
 		fmt.Println("Cart is empty")
@@ -55,8 +54,7 @@ func (c *Cart) ViewCart() {
 	for i, item := range c.Items {
 		subtotal := item.Price * float64(item.Qty)
 
-		fmt.Printf(
-			"%d. %s | Price: %.2f | Qty: %d | Subtotal: %.2f\n",
+		fmt.Printf("%d. %s | Price: %.2f | Qty: %d | Subtotal: %.2f\n",
 			i+1,
 			item.Name,
 			item.Price,
