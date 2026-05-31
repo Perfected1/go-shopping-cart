@@ -1,8 +1,3 @@
-Understood. Here is **ONLY the README.md content** — nothing else. Copy and paste directly:
-
-```md
-# 🛒 Shopping Cart CLI (Go)
-
 A simple command-line shopping cart application built with Go.
 
 This project demonstrates core backend fundamentals such as structs, methods, slices, and user input handling in a CLI environment.
